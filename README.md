@@ -11,7 +11,7 @@ To ensure a secure environment, you don't want to use APIs directly from the fro
 Installing the Library
 ----------------------
 
-This project is build using Maven. To install Maven go to to the public [maven](http://maven.apache.org/download.html) repository and follow the installation instructions.
+This project is built using Maven. To install Maven go to to the public [maven](http://maven.apache.org/download.html) repository and follow the installation instructions.
 
 Use the following dependency in your project:
 
@@ -42,7 +42,7 @@ You can view the javadocs for this project at:
 How to use it?
 --------------
 
-The simple use case is to create a TextKeyRest object, call the appropriate API method and handle the returned object payload. The class will handle the details between the request and response and will return a JSON string to work with.
+The simple use case is to create a TextKeyRest object, call the appropriate API method and handle the returned JSON payload. The class will handle the details between the request and response and will return a JSON string to work with.
 
 For example, here is a use case to check if a user has already been registered using the `doesRegistrationUserIDExist` API Call.
 
@@ -58,21 +58,20 @@ public class TestDoesRegistrationUserIdExist {
 		/* Setup */
 		String TK_API = "PUT YOUR API KEY HERE";
 		
+		/* Create the TextKey object */
+		TextKeyRest textkey = new TextKeyRest(TK_API, false);
+		
 		/* Setup the API call parameters */
 		String UserID = "BobSmithUID";
 		String isHashed = "TRUE";
 		  
-		/* Create the TextKey object */
-		TextKeyRest textkey = new TextKeyRest(TK_API, false);
-		
 		/* Make the REST API Call */
-		String JSONpayload =  textkey.perform_DoesRegistrationUserIDExist(UserID, 
-																          isHashed);
+		String JSONpayload =  textkey.perform_DoesRegistrationUserIDExist(UserID, isHashed);
 		
 		/* Display the API Results */
 		try {
 			JSONObject results = new JSONObject(JSONpayload).getJSONObject("d");
-		    System.out.println("Test Results: \n" + TextKeyRest.toPrettyFormat(results.toString()));
+			System.out.println("Test Results: \n" + TextKeyRest.toPrettyFormat(results.toString()));
 		} catch(Exception pe){
 			pe.printStackTrace();
 		} 				
@@ -94,7 +93,12 @@ Here is what the result should look like:
 Initialization
 ---------------
 
-The basic initialize step consists of including the REST Library and then creating a textkey object.
+The basic initialize step consists of including the REST Library as well as the JSON Library and then creating a TextKeyRest object.
+
+```java
+import org.json.JSONObject;
+import com.textkey.rest.*;
+```
 
 ```java
 /* Setup */
@@ -107,7 +111,7 @@ TextKeyRest textkey = new TextKeyRest(TK_API, false);
 Making the API Call
 -------------------
 
-Once initialized, you can now make a call out to the specific TextKey API using the textkey object you just created.
+Once initialized, you can now make a call out to the specific TextKey API using the TextKeyRest object you just created.
 
 ```java
 /* Setup the API call parameters */
@@ -115,31 +119,30 @@ String UserID = "BobSmithUID";
 String isHashed = "TRUE";
 
 /* Make the REST API Call */
-String JSONpayload =  textkey.perform_DoesRegistrationUserIDExist(UserID, 
-														          isHashed);
+String JSONpayload =  textkey.perform_DoesRegistrationUserIDExist(UserID, isHashed);
 ```
 
 Handling the resulting payload
 ------------------------------
 
-The API call will return back an object with all of the API fields included. First check for an error (i.e. in the `errorDescr` field of the returned object) and then pull the data you need from the object.
+The API call will return back a JSON string with all of the API fields included. It is wrapped in the `d` parent element so that wrapper should be removed.
 
 ```java
 /* Display the API Results */
 try {
 	JSONObject results = new JSONObject(JSONpayload).getJSONObject("d");
-    System.out.println("Test Results: \n" + TextKeyRest.toPrettyFormat(results.toString()));
+	System.out.println("Test Results: \n" + TextKeyRest.toPrettyFormat(results.toString()));
 } catch(Exception pe){
 	pe.printStackTrace();
 } 				
 ```
 
+NOTE: If there is an error, the `errorDescr` field of the returned JSON payload will contain a value.
+
 Sample Code
 -----------
 
-There is sample code in the [Examples Folder](https://github.com/TEXTPOWER/RESTLibrary-java/blob/master/src/main/java/com/textkey/rest/examples) for each TextKey API call using the shared library.
-
-We have included a folder called [examples](https://github.com/TEXTPOWER/RESTLibrary-java/blob/master/src/main/java/com/textkey/rest/examples) in this repository with sample code for all current API calls.
+There is sample code in the [examples Folder](https://github.com/TEXTPOWER/RESTLibrary-java/blob/master/src/main/java/com/textkey/rest/examples) for each TextKey API call using the shared library.
 
 Contributing to this SDK
 ------------------------
