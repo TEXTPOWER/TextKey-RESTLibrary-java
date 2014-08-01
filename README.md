@@ -14,10 +14,10 @@ Use the following dependency in your project:
 If you want to compile it yourself, here's how:
 
     $ git clone git@github.com:TEXTPOWER/RESTLibrary-java
-    $ cd textkey_rest
+    $ cd RESTLibrary-java
     $ mvn install
 
-This will also build the javadoc in `textkey_rest/target/apidocs`. You can open the
+This will also build the javadoc in `RESTLibrary-java/target/apidocs`. You can open the
 index.html located there to view it locally.
 
 Pre-built jars are available [here](http://search.maven.org/XXXXX). Select the directory for the latest version and download one of these jar files:
