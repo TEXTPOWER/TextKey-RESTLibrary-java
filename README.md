@@ -1,6 +1,17 @@
-# Installing
+TextKey REST Library
+====================
 
-This project is build using Maven. To install Maven got to the public [maven](http://maven.apache.org/download.html) repository and follow the installation instrucions.
+This Java library allows you to use TextKey's REST API calls server-side from a Java backend.
+
+Common use-Case
+---------------
+
+To ensure a secure environment, you don't want to use APIs directly from the front-end, but rather through web-services inside your Java backend.
+
+Installing the Library
+----------------------
+
+This project is build using Maven. To install Maven go to to the public [maven](http://maven.apache.org/download.html) repository and follow the installation instructions.
 
 Use the following dependency in your project:
 
@@ -28,11 +39,12 @@ Pre-built jars are available [here](http://search.maven.org/XXXXX). Select the d
 You can view the javadocs for this project at:
 [http://textpower.github.io/RESTLibrary-java](http://textpower.github.io/RESTLibrary-java)
 
-# Examples
+How to use it?
+--------------
 
-There is sample code in the [Examples Folder](https://github.com/TEXTPOWER/RESTLibrary-java/blob/master/src/main/java/com/textkey/rest/examples) for each TextKey API call.
+The simple use case is to create a TextKeyRest object, call the appropriate API method and handle the returned object payload. The class will handle the details between the request and response and will return a JSON string to work with.
 
-For example, here is the code for the getTempAPI_Key API call using the shared library.
+For example, here is a use case to check if a user has already been registered using the `doesRegistrationUserIDExist` API Call.
 
 ```java
 package com.textkey.rest.examples;
@@ -40,19 +52,23 @@ package com.textkey.rest.examples;
 import org.json.JSONObject;
 import com.textkey.rest.*;
 
-public class TestGetTempAPIKey {
+public class TestDoesRegistrationUserIdExist {
 
 	public static void main(String[] args) {
 		/* Setup */
-		String TK_API = "PUT API KEY HERE";
-		Integer minutesDuration = 2;
+		String TK_API = "PUT YOUR API KEY HERE";
 		
+		/* Setup the API call parameters */
+		String UserID = "BobSmithUID";
+		String isHashed = "TRUE";
+		  
 		/* Create the TextKey object */
 		TextKeyRest textkey = new TextKeyRest(TK_API, false);
 		
 		/* Make the REST API Call */
-		String JSONpayload = textkey.perform_GetTempAPI_Key(minutesDuration);
-
+		String JSONpayload =  textkey.perform_DoesRegistrationUserIDExist(UserID, 
+																          isHashed);
+		
 		/* Display the API Results */
 		try {
 			JSONObject results = new JSONObject(JSONpayload).getJSONObject("d");
@@ -61,6 +77,77 @@ public class TestGetTempAPIKey {
 			pe.printStackTrace();
 		} 				
 	}
-
+	
 }
 ```
+
+Here is what the result should look like:
+
+	Test Results: 
+	{
+	  "__type": "TextKeyCommon.TKStructures+RegistrationExistence",
+	  "cellNumberCount": -2,
+	  "errorDescr": "",
+	  "userIDCount": 1
+	}
+
+Initialization
+---------------
+
+The basic initialize step consists of including the REST Library and then creating a textkey object.
+
+```java
+/* Setup */
+String TK_API = "PUT YOUR API KEY HERE";
+  
+/* Create the TextKey object */
+TextKeyRest textkey = new TextKeyRest(TK_API, false);
+```
+
+Making the API Call
+-------------------
+
+Once initialized, you can now make a call out to the specific TextKey API using the textkey object you just created.
+
+```java
+/* Setup the API call parameters */
+String UserID = "BobSmithUID";
+String isHashed = "TRUE";
+
+/* Make the REST API Call */
+String JSONpayload =  textkey.perform_DoesRegistrationUserIDExist(UserID, 
+														          isHashed);
+```
+
+Handling the resulting payload
+------------------------------
+
+The API call will return back an object with all of the API fields included. First check for an error (i.e. in the `errorDescr` field of the returned object) and then pull the data you need from the object.
+
+```java
+/* Display the API Results */
+try {
+	JSONObject results = new JSONObject(JSONpayload).getJSONObject("d");
+    System.out.println("Test Results: \n" + TextKeyRest.toPrettyFormat(results.toString()));
+} catch(Exception pe){
+	pe.printStackTrace();
+} 				
+```
+
+Sample Code
+-----------
+
+There is sample code in the [Examples Folder](https://github.com/TEXTPOWER/RESTLibrary-java/blob/master/src/main/java/com/textkey/rest/examples) for each TextKey API call using the shared library.
+
+We have included a folder called [examples](https://github.com/TEXTPOWER/RESTLibrary-java/blob/master/src/main/java/com/textkey/rest/examples) in this repository with sample code for all current API calls.
+
+Contributing to this SDK
+------------------------
+
+**Issues**
+
+Please discuss issues and features on Github Issues. We'll be happy to answer to your questions and improve the SDK based on your feedback.
+
+**Pull requests**
+
+You are welcome to fork this SDK and to make pull requests on Github. We'll review each of them, and integrate in a future release if they are relevant.
