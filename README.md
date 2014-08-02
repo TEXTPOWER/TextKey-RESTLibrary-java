@@ -97,7 +97,7 @@ The basic initialize step consists of including the REST Library as well as the 
 
 ```java
 import org.json.JSONObject;
-import com.textkey.rest.*;
+import com.textkey.rest.TextKeyRest;
 ```
 
 ```java
