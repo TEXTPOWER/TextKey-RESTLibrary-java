@@ -34,7 +34,7 @@ index.html located there to view it locally.
 Pre-built jars are available [here](http://search.maven.org/XXXXX). Select the directory for the latest version and download one of these jar files:
 
 * textkey-java-rest-1.x.x-with-dependencies.jar
-* textkey-java-rest-1.x.x.jar -- use this if you have issues with conflicting jars in your project. You'll need to include versions of the dependencies yourself. See the [pom.xml](https://github.com/TEXTPOWER/RESTLibrary-java/pom.xml) file in [RESTLibrary-java](https://github.com/TEXTPOWER/RESTLibrary-java) for the list of libraries.
+* textkey-java-rest-1.x.x.jar -- use this if you have issues with conflicting jars in your project. You'll need to include versions of the dependencies yourself. See the [pom.xml](https://github.com/TEXTPOWER/RESTLibrary-java/blob/master/pom.xml) file in [RESTLibrary-java](https://github.com/TEXTPOWER/RESTLibrary-java) for the list of libraries.
 
 You can view the javadocs for this project at:
 [http://textpower.github.io/RESTLibrary-java](http://textpower.github.io/RESTLibrary-java)
