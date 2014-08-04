@@ -8,6 +8,16 @@ Common use-Case
 
 To ensure a secure environment, you don't want to use APIs directly from the front-end, but rather through web-services inside your Java backend.
 
+More Information
+----------------
+
+To get more detailed information on the TextKey API Services or to investigate the API in more detail, you can refer to the following:
+
+* [TextKey Developer Site](http://developer.textkey.com)
+* [TextKey API Call Documentation](http://developer.textkey.com/apidocumentation.php)
+* [Test All TextKey API Calls](http://developer.textkey.com/apitestapicalls.php)
+* [TextKey Sample Site](http://developer.textkey.com/apitextkeyexample.php)
+
 Installing the Library
 ----------------------
 
@@ -50,7 +60,7 @@ For example, here is a use case to check if a user has already been registered u
 package com.textkey.rest.examples;
 
 import org.json.JSONObject;
-import com.textkey.rest.*;
+import com.textkey.rest.TextKeyRest;
 
 public class TestDoesRegistrationUserIdExist {
 
