@@ -1,5 +1,5 @@
 # TextKey Makefile
-.PHONY: test install clean docs
+.PHONY: test install clean docs deploy
 
 install:
 	mvn install
@@ -13,3 +13,5 @@ clean:
 docs:
 	mvn javadoc:javadoc
 
+deploy:
+	mvn clean deploy
