@@ -28,7 +28,7 @@ Use the following dependency in your project:
        <dependency>
           <groupId>com.textkey.rest</groupId>
           <artifactId>textkey-java-rest</artifactId>
-          <version>1.0.0</version>
+          <version>1.0.1</version>
           <scope>compile</scope>
        </dependency>
 
