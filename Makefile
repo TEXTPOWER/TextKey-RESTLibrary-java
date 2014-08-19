@@ -8,6 +8,7 @@ test:
 	mvn test
 	
 clean:
+	sudo mvn release:clean
 	sudo rm -rf target
 
 docs:

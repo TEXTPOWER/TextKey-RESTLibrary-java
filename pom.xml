@@ -71,7 +71,7 @@
     <maven-release-plugin.version>2.5</maven-release-plugin.version>
     <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
     <maven-source-plugin.version>2.2.1</maven-source-plugin.version>
-    <nexus-staging-maven-plugin>1.6.2</nexus-staging-maven-plugin>
+    <nexus-staging-maven-plugin.version>1.6.2</nexus-staging-maven-plugin.version>
 
     <!-- misc. versions -->
   	<commons-logging>1.2</commons-logging>
