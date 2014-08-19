@@ -4,7 +4,7 @@
   <artifactId>textkey-java-rest</artifactId>
   <packaging>jar</packaging>
   <name>textkey_rest</name>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.1</version>
   <description>Java helper library for TextKey API Services</description>
   <url>http://developer.textkey.com</url>
   
@@ -24,7 +24,7 @@
     <url>git@github.com:TEXTPOWER/RESTLibrary-java.git</url>
     <connection>scm:git:git@github.com:TEXTPOWER/RESTLibrary-java.git</connection>
     <developerConnection>scm:git:git@github.com:TEXTPOWER/RESTLibrary-java.git</developerConnection>
-    <tag>textkey-java-rest-1.0.0</tag>
+    <tag>textkey-java-rest-1.0.1</tag>
   </scm>
   
   <developers>
