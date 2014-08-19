@@ -1,17 +1,20 @@
 # TextKey Makefile
-.PHONY: test install clean docs deploy
+.PHONY: test install clean docs prepare deploy
 
 install:
-	mvn install
+	sudo mvn install
 
 test:
 	mvn test
 	
 clean:
-	rm -rf target
+	sudo rm -rf target
 
 docs:
 	mvn javadoc:javadoc
 
+prepare:
+	sudo mvn release:clean release:prepare
+ 
 deploy:
-	mvn clean deploy
+	sudo mvn release:perform
